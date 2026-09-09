@@ -1,0 +1,218 @@
+{
+  "schema": "1.0",
+  "feature_names": [
+    "temp_now",
+    "temp_lag1",
+    "temp_lag3",
+    "temp_lag6",
+    "temp_lag_window",
+    "util_now",
+    "util_lag1",
+    "util_mean",
+    "supply_c",
+    "airflow",
+    "ambient_c",
+    "rack_fraction",
+    "zone_fraction",
+    "time_sin",
+    "time_cos"
+  ],
+  "sequence_feature_names": [
+    "temperature_c",
+    "utilization",
+    "supply_c",
+    "airflow",
+    "ambient_c",
+    "rack_fraction",
+    "zone_fraction"
+  ],
+  "created_utc": "2026-09-09T16:47:31.790915+00:00",
+  "config_fingerprint": "8db2ca5397b47287",
+  "data_fingerprint": "3d54ecaaf0d14d7f",
+  "horizons_min": [
+    5,
+    10,
+    15,
+    30,
+    60
+  ],
+  "split_ranges": [
+    {
+      "run_id": "dataset-burst-a2a6befa",
+      "scenario": "burst",
+      "heldout_scenario": false,
+      "ranges": [
+        {
+          "name": "train",
+          "start": 0,
+          "end": 282
+        },
+        {
+          "name": "validation",
+          "start": 354,
+          "end": 449
+        },
+        {
+          "name": "calibration",
+          "start": 521,
+          "end": 611
+        },
+        {
+          "name": "test",
+          "start": 683,
+          "end": 780
+        }
+      ],
+      "purge_steps": 72
+    },
+    {
+      "run_id": "dataset-cooling_degradation-4e2fff42",
+      "scenario": "cooling_degradation",
+      "heldout_scenario": false,
+      "ranges": [
+        {
+          "name": "train",
+          "start": 0,
+          "end": 282
+        },
+        {
+          "name": "validation",
+          "start": 354,
+          "end": 449
+        },
+        {
+          "name": "calibration",
+          "start": 521,
+          "end": 611
+        },
+        {
+          "name": "test",
+          "start": 683,
+          "end": 780
+        }
+      ],
+      "purge_steps": 72
+    },
+    {
+      "run_id": "dataset-hot_ambient-26017bcf",
+      "scenario": "hot_ambient",
+      "heldout_scenario": true,
+      "ranges": [
+        {
+          "name": "test",
+          "start": 0,
+          "end": 780
+        }
+      ],
+      "purge_steps": 0
+    },
+    {
+      "run_id": "dataset-normal-6c12e3d0",
+      "scenario": "normal",
+      "heldout_scenario": false,
+      "ranges": [
+        {
+          "name": "train",
+          "start": 0,
+          "end": 282
+        },
+        {
+          "name": "validation",
+          "start": 354,
+          "end": 449
+        },
+        {
+          "name": "calibration",
+          "start": 521,
+          "end": 611
+        },
+        {
+          "name": "test",
+          "start": 683,
+          "end": 780
+        }
+      ],
+      "purge_steps": 72
+    },
+    {
+      "run_id": "dataset-skewed-1959e33f",
+      "scenario": "skewed",
+      "heldout_scenario": true,
+      "ranges": [
+        {
+          "name": "test",
+          "start": 0,
+          "end": 780
+        }
+      ],
+      "purge_steps": 0
+    }
+  ],
+  "seed": 20260908,
+  "training_times_s": {
+    "ridge": 0.00963269999192562,
+    "random_forest": 1.4146173000044655,
+    "gradient_boosting": 3.3433038999937708,
+    "recurrent": 0.7354120000090916,
+    "hybrid": 0.006838799992692657
+  },
+  "validation_mae_c": {
+    "ridge": 0.9865383505821228,
+    "random_forest": 1.0066453731985168,
+    "gradient_boosting": 1.0162296850089958,
+    "recurrent": 24.782573699951172,
+    "hybrid": 1.0493141412734985,
+    "persistence": 0.31232452392578125,
+    "physics": 1.1072616577148438
+  },
+  "operational_selection": "hybrid",
+  "selection_rationale": "Operational hybrid retained for action-conditioned control; validation-best benchmark was persistence. The residual model has bounded CPU inference and explicitly corrects nominal action rollouts.",
+  "packages": {
+    "python": "3.13.2",
+    "numpy": "2.5.3",
+    "scikit_learn": "1.9.0",
+    "torch": "2.14.0+cpu"
+  },
+  "wall_time_s": 11.745077200001106,
+  "sample_counts": {
+    "train": 7596,
+    "validation": 864,
+    "calibration": 684,
+    "test": 17952
+  },
+  "gru_history": [
+    {
+      "epoch": 1,
+      "train_mse": 880.7961161295573,
+      "validation_mse": 861.9802856445312
+    },
+    {
+      "epoch": 2,
+      "train_mse": 626.7865783691407,
+      "validation_mse": 618.8356323242188
+    }
+  ],
+  "action_transition_samples": 10116,
+  "hyperparameters": {
+    "horizons_min": [
+      5,
+      10,
+      15,
+      30,
+      60
+    ],
+    "heldout_scenarios": [
+      "skewed",
+      "hot_ambient"
+    ],
+    "window_steps": 12,
+    "nominal_interval": 0.9,
+    "recurrent_hidden": 18,
+    "recurrent_epochs": 2,
+    "recurrent_patience": 1,
+    "batch_size": 256,
+    "forest_trees": 20,
+    "boosting_estimators": 20
+  },
+  "model_id": "b6af9ce31535df3c"
+}

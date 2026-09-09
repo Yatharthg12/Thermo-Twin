@@ -1,0 +1,152 @@
+THERMOTWIN — HOW TO RUN
+=======================
+
+What this is
+------------
+ThermoTwin is a local, software-only research platform. It simulates a data-centre
+plant; it is not connected to or calibrated against a physical facility. Normal
+simulation, inference, experiments, reports, and dashboard use require no network
+after Python packages have been installed.
+
+Prerequisites
+-------------
+- A 64-bit CPython installation, version 3.11 or newer.
+- Python 3.13.2 was used for the verified build.
+- Internet access is needed for the first package installation only.
+- No GPU, npm, Docker, MySQL, account, paid API, or external service is needed.
+
+WINDOWS POWERSHELL (recommended)
+--------------------------------
+1. Open PowerShell in the ThermoTwin project directory.
+
+2. Create a virtual environment:
+   py -3.13 -m venv .venv
+
+   If Python 3.13 is not installed, use a supported installed version, for example:
+   py -3.12 -m venv .venv
+
+3. First-time install and full smoke preparation (one command):
+   .venv\Scripts\python.exe scripts\bootstrap.py --profile smoke
+
+   This installs the editable project, creates reproducible simulated data, trains
+   persistence/physics/ridge/random-forest/gradient-boosting/GRU/hybrid paths, runs
+   all six bounded smoke experiments, and writes an offline HTML report. It may
+   take a few minutes on a CPU laptop.
+
+4. Normal launch (one command):
+   .venv\Scripts\python.exe -m thermotwin serve --profile smoke
+
+5. Open this local URL in a browser:
+   http://127.0.0.1:5000
+
+6. In the dashboard, choose a scenario and controller, select Initialize run, then
+   use Play, Pause, +1, Reset, or Playback. Rack cards open the corresponding causal
+   forecast. Experiments can start a bounded background smoke or research job.
+
+7. Stop the server with Ctrl+C in PowerShell.
+
+MACOS OR LINUX
+--------------
+1. Open a terminal in the ThermoTwin project directory.
+2. Create a virtual environment:
+   python3 -m venv .venv
+3. First-time install and smoke preparation:
+   .venv/bin/python scripts/bootstrap.py --profile smoke
+4. Normal launch:
+   .venv/bin/python -m thermotwin serve --profile smoke
+5. Open http://127.0.0.1:5000 and stop with Ctrl+C.
+
+COMMON COMMANDS
+---------------
+Use .venv\Scripts\python.exe on Windows or .venv/bin/python on macOS/Linux in the
+commands below.
+
+Check interpreter, dependencies, configuration, and artifacts:
+  python -m thermotwin doctor --profile smoke
+
+Show every supported command:
+  python -m thermotwin --help
+
+Generate data only:
+  python -m thermotwin generate --profile smoke
+
+Train every required model family against generated data:
+  python -m thermotwin train --profile smoke
+
+Evaluate the prepared operational hybrid on the held-out test block:
+  python -m thermotwin evaluate --profile smoke
+
+Run a 30-minute terminal simulation:
+  python -m thermotwin simulate --profile smoke --scenario burst --steps 30
+
+Run all six smoke experiments, reusing matching artifacts:
+  python -m thermotwin experiments --profile smoke
+
+Run only experiments 1 and 3:
+  python -m thermotwin experiments --profile smoke --experiment 1 --experiment 3
+
+Force a clean logical rebuild (existing run outputs are preserved):
+  python -m thermotwin prepare --profile smoke --force
+
+Run the larger research configuration:
+  python -m thermotwin prepare --profile research
+
+The research profile expands trajectories to 2 days, uses 10 replications, trains
+for up to 20 GRU epochs, and searches more actions. It is intentionally much more
+expensive than smoke and may take hours depending on the CPU. Smoke results are
+pipeline evidence, not publication-quality statistical evidence.
+
+Run automated checks in a restricted Windows workspace:
+  python -m pytest -q -p no:cacheprovider
+
+OUTPUT LOCATIONS
+----------------
+- artifacts/<profile>/dataset.csv          generated long-form data
+- artifacts/<profile>/dataset_seeds.json   independent named seed streams
+- artifacts/<profile>/models/              trusted trained model bundle + manifest
+- artifacts/jobs/                          persisted background-job state
+- reports/<run_id>/                         experiment CSV/JSON, PNG/SVG, manifest
+- reports/<run_id>/report.html              self-contained offline report
+- reports/<run_id>/summary.json             machine-readable experiment summary
+
+Preparation is idempotent. Cached data/models/runs are accepted only when their
+configuration and source fingerprints match. --force produces new artifacts without
+deleting previous run evidence.
+
+TROUBLESHOOTING
+---------------
+Wrong Python interpreter:
+  Run "python --version" and "python -m thermotwin doctor --profile smoke". On
+  Windows, invoke .venv\Scripts\python.exe directly so PowerShell activation policy
+  is irrelevant.
+
+"No module named thermotwin":
+  The editable install is missing for that interpreter. Run:
+  python -m pip install -e .
+
+Missing model artifacts / hybrid controller disabled:
+  Run:
+  python -m thermotwin prepare --profile smoke
+  Fixed, reactive, and physics-only simulation remain available without ML artifacts.
+
+Incompatible model/config schema:
+  Models were prepared with different source/configuration semantics. Rebuild with:
+  python -m thermotwin prepare --profile smoke --force
+
+Port 5000 is occupied:
+  Choose another local port:
+  python -m thermotwin serve --profile smoke --port 5050
+
+Insufficient training window:
+  A custom YAML scenario is shorter than its lag window, purge gaps, and 60-minute
+  target horizon. Increase experiments.scenario_steps or shorten only after ensuring
+  every required horizon still fits.
+
+Interrupted preparation:
+  Rerun the same prepare command. Fingerprint-valid completed products are reused;
+  interrupted jobs are marked accurately. Add --force only if you want a rebuild.
+
+Browser says the server failed:
+  Read the terminal error. Confirm the URL is 127.0.0.1, run doctor, and verify that
+  firewall/security software permits a loopback-only local Python server.
+

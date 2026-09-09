@@ -1,0 +1,30 @@
+{
+  "root": 20260908,
+  "streams": {
+    "normal": {
+      "plant_root_process_and_observation": 1813177296,
+      "workload": 949867470,
+      "exploration_actions": 2637723243
+    },
+    "burst": {
+      "plant_root_process_and_observation": 2728836858,
+      "workload": 251392023,
+      "exploration_actions": 2875086258
+    },
+    "skewed": {
+      "plant_root_process_and_observation": 425321279,
+      "workload": 2761974290,
+      "exploration_actions": 17156023
+    },
+    "hot_ambient": {
+      "plant_root_process_and_observation": 637631439,
+      "workload": 4004313646,
+      "exploration_actions": 1258905483
+    },
+    "cooling_degradation": {
+      "plant_root_process_and_observation": 1311768386,
+      "workload": 3053427089,
+      "exploration_actions": 274349108
+    }
+  }
+}

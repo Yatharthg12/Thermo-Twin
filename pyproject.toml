@@ -1,0 +1,43 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "thermotwin"
+version = "0.1.0"
+description = "Machine-learning enhanced digital twin for simulated data-centre thermal control"
+readme = "README.md"
+requires-python = ">=3.11"
+license = {file = "LICENSE"}
+authors = [{name = "Yatharth Garg"}]
+dependencies = [
+  "Flask>=3.0",
+  "numpy>=1.26",
+  "scipy>=1.11",
+  "pandas>=2.1",
+  "scikit-learn>=1.4",
+  "matplotlib>=3.8",
+  "PyYAML>=6.0",
+  "torch>=2.2",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8.0", "selenium>=4.20"]
+
+[project.scripts]
+thermotwin = "thermotwin.cli:main"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+thermotwin = ["web/templates/*.html", "web/static/css/*.css", "web/static/js/*.js", "web/static/assets/*.svg"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
+

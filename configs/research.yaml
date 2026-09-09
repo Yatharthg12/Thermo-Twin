@@ -1,0 +1,17 @@
+project:
+  profile: research
+experiments:
+  scenario_steps: 2880
+  control_steps: 720
+  repetitions: 10
+  recurrent_epochs: 20
+  candidate_budget: 32
+forecasting:
+  recurrent_epochs: 20
+  recurrent_patience: 5
+  forest_trees: 160
+  boosting_estimators: 140
+control:
+  horizon_min: 30
+  max_candidates: 32
+

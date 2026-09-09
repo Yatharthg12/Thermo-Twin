@@ -1,0 +1,135 @@
+{
+  "project": {
+    "profile": "smoke",
+    "seed": 20260908,
+    "artifacts_dir": "artifacts",
+    "reports_dir": "reports"
+  },
+  "topology": {
+    "racks": 12,
+    "zones": 3,
+    "rack_zone": [
+      0,
+      0,
+      0,
+      0,
+      1,
+      1,
+      1,
+      1,
+      2,
+      2,
+      2,
+      2
+    ]
+  },
+  "physics": {
+    "observation_interval_s": 60,
+    "integration_step_s": 10,
+    "capacitance_j_per_k": 900000.0,
+    "idle_power_w": 2500.0,
+    "dynamic_power_w": 6500.0,
+    "conductance_w_per_k": 620.0,
+    "airflow_exponent": 0.72,
+    "coupling_w_per_k": 42.0,
+    "recirculation_fraction": 0.16,
+    "process_noise_w": 140.0,
+    "mismatch_fraction": 0.1
+  },
+  "cooling": {
+    "supply_min_c": 15.0,
+    "supply_max_c": 25.0,
+    "supply_initial_c": 20.0,
+    "supply_slew_c_per_min": 1.0,
+    "supply_tau_s": 180.0,
+    "airflow_min": 0.55,
+    "airflow_max": 1.35,
+    "airflow_initial": 0.88,
+    "airflow_slew_per_min": 0.12,
+    "airflow_tau_s": 120.0,
+    "capacity_w_per_zone": 42000.0,
+    "fan_power_w_per_zone": 1250.0,
+    "cop_min": 2.2,
+    "cop_max": 6.0
+  },
+  "sensors": {
+    "noise_std_c": 0.12,
+    "missing_probability": 0.01,
+    "estimator_gain": 0.65
+  },
+  "thresholds": {
+    "hotspot_c": 35.0,
+    "hard_limit_c": 40.0
+  },
+  "workload": {
+    "rack_capacity": 1.0,
+    "migration_limit": 0.18,
+    "migration_cooldown_steps": 3,
+    "migration_overhead_w": 350.0
+  },
+  "forecasting": {
+    "horizons_min": [
+      5,
+      10,
+      15,
+      30,
+      60
+    ],
+    "heldout_scenarios": [
+      "skewed",
+      "hot_ambient"
+    ],
+    "window_steps": 12,
+    "nominal_interval": 0.9,
+    "recurrent_hidden": 18,
+    "recurrent_epochs": 2,
+    "recurrent_patience": 1,
+    "batch_size": 256,
+    "forest_trees": 20,
+    "boosting_estimators": 20
+  },
+  "control": {
+    "horizon_min": 5,
+    "rollout_step_s": 60,
+    "decision_interval_steps": 2,
+    "max_candidates": 18,
+    "weights": {
+      "energy": 1.0,
+      "hotspot": 7.0,
+      "hard_limit": 35.0,
+      "imbalance": 0.7,
+      "movement": 0.01,
+      "migration": 0.25
+    },
+    "normalization": {
+      "energy_kwh": 0.1,
+      "temperature_c": 5.0,
+      "movement": 1.0
+    }
+  },
+  "experiments": {
+    "scenario_steps": 780,
+    "control_steps": 20,
+    "repetitions": 1,
+    "recurrent_epochs": 2,
+    "candidate_budget": 18,
+    "scale_racks": [
+      6,
+      12,
+      24
+    ],
+    "scenarios": [
+      "normal",
+      "burst",
+      "skewed",
+      "hot_ambient",
+      "cooling_degradation"
+    ]
+  },
+  "service": {
+    "max_history": 2000,
+    "max_horizon_min": 60,
+    "playback_interval_s": 0.8,
+    "max_jobs": 1
+  }
+}

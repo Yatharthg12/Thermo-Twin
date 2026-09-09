@@ -1,0 +1,15 @@
+{
+  "status": "complete",
+  "rows": 20,
+  "paired_hybrid_minus_fixed_energy_kwh": {
+    "mean_difference": -0.33016417650004826,
+    "ci95": null,
+    "reason": "fewer than three independent paired replications"
+  },
+  "name": "closed_loop_control",
+  "wall_time_s": 29.16295440000249,
+  "seed": 20260908,
+  "config_fingerprint": "8db2ca5397b47287",
+  "data_fingerprint": "3d54ecaaf0d14d7f",
+  "model_id": "b6af9ce31535df3c"
+}

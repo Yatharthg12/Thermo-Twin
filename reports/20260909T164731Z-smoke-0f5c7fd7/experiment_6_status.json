@@ -1,0 +1,11 @@
+{
+  "status": "complete",
+  "rows": 11,
+  "compute_budget": "12 control steps per robustness setting and 10 per topology in smoke/default runner",
+  "name": "robustness_scale",
+  "wall_time_s": 20.334221099998103,
+  "seed": 20260908,
+  "config_fingerprint": "8db2ca5397b47287",
+  "data_fingerprint": "3d54ecaaf0d14d7f",
+  "model_id": "b6af9ce31535df3c"
+}

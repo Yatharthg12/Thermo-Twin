@@ -1,0 +1,12 @@
+{
+  "status": "complete",
+  "validation_selected_benchmark": "persistence",
+  "operational_model": "hybrid",
+  "rows": 35,
+  "name": "forecast_benchmark",
+  "wall_time_s": 0.9135090000054333,
+  "seed": 20260908,
+  "config_fingerprint": "8db2ca5397b47287",
+  "data_fingerprint": "3d54ecaaf0d14d7f",
+  "model_id": "b6af9ce31535df3c"
+}

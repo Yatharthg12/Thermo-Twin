@@ -1,0 +1,69 @@
+{
+  "status": "complete",
+  "checks_passed": 8,
+  "checks_total": 8,
+  "raw": [
+    {
+      "check": "analytic decoupled cooling",
+      "measured": 6.943778885215579e-11,
+      "limit": 1e-06,
+      "passed": true,
+      "units": "\u00b0C"
+    },
+    {
+      "check": "zero-input equilibrium",
+      "measured": 0.0,
+      "limit": 1e-12,
+      "passed": true,
+      "units": "K/s"
+    },
+    {
+      "check": "positive heat response",
+      "measured": 0.005555555555555556,
+      "limit": 0.0,
+      "passed": true,
+      "units": "K/s"
+    },
+    {
+      "check": "symmetric coupling conservation",
+      "measured": 0.0,
+      "limit": 1e-12,
+      "passed": true,
+      "units": "W-equivalent"
+    },
+    {
+      "check": "actuator finite lag",
+      "measured": 19.0,
+      "limit": 19.0,
+      "passed": true,
+      "units": "\u00b0C"
+    },
+    {
+      "check": "capacity saturation",
+      "measured": 10000.0,
+      "limit": 10000.0,
+      "passed": true,
+      "units": "W"
+    },
+    {
+      "check": "airflow increases conductance",
+      "measured": 277.77108981149945,
+      "limit": 0.0,
+      "passed": true,
+      "units": "W/K difference"
+    },
+    {
+      "check": "timestep refinement",
+      "measured": 3.438955786805309e-10,
+      "limit": 9.034168781943461e-08,
+      "passed": true,
+      "units": "\u00b0C error"
+    }
+  ],
+  "name": "physics_numerics",
+  "wall_time_s": 0.5117686999874422,
+  "seed": 20260908,
+  "config_fingerprint": "8db2ca5397b47287",
+  "data_fingerprint": "3d54ecaaf0d14d7f",
+  "model_id": "b6af9ce31535df3c"
+}

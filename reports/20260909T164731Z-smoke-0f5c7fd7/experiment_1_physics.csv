@@ -1,0 +1,9 @@
+check,measured,limit,passed,units
+analytic decoupled cooling,6.943778885215579e-11,1e-06,True,°C
+zero-input equilibrium,0.0,1e-12,True,K/s
+positive heat response,0.005555555555555556,0.0,True,K/s
+symmetric coupling conservation,0.0,1e-12,True,W-equivalent
+actuator finite lag,19.0,19.0,True,°C
+capacity saturation,10000.0,10000.0,True,W
+airflow increases conductance,277.77108981149945,0.0,True,W/K difference
+timestep refinement,3.438955786805309e-10,9.034168781943461e-08,True,°C error

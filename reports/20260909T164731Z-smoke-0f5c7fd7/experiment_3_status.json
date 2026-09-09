@@ -1,0 +1,20 @@
+{
+  "status": "complete",
+  "uncertainty_rows": 5,
+  "hotspot_event_metrics_60_min": {
+    "horizon_min": 60,
+    "brier": 0.10298588126897812,
+    "precision": 0.7360675512665863,
+    "recall": 0.7136842105263158,
+    "f1": 0.7247030878859857,
+    "count": 17952,
+    "pr_auc": 0.8442547945317916
+  },
+  "event_definition": "Any true effective-rack threshold exceedance at any one-minute sample within each complete future window",
+  "name": "horizon_sensitivity",
+  "wall_time_s": 0.5099288000055822,
+  "seed": 20260908,
+  "config_fingerprint": "8db2ca5397b47287",
+  "data_fingerprint": "3d54ecaaf0d14d7f",
+  "model_id": "b6af9ce31535df3c"
+}
